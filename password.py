@@ -11,12 +11,12 @@ def check_password_strength(password):
     feedback = []
 
     if password.lower() in COMMON_PASSWORDS:
-        return "❌ Too common! Choose a secure password.", "Weak 😞", 0, "red"
+        return "❌ This password is too common! Choose a more secure one.", "Weak 😞", 0, "red"
 
     if len(password) >= 8:
         score += 1
     else:
-        feedback.append("❌ Password must be at least 8 characters long.")
+        feedback.append("❌ Password should be at least 8 characters long.")
 
     if re.search(r"[A-Z]", password) and re.search(r"[a-z]", password):
         score += 1
@@ -35,16 +35,16 @@ def check_password_strength(password):
 
     # Strength Rating with Emoji & Progress Color
     if score == 5:
-        return "✅ Strong Password! 😎", "Strong", 100, "#28a745"
+        return "✅ Excellent Password! 🔥", "Strong", 100, "#28a745"
     elif score >= 3:
-        return "⚠️ Moderate Password 😐 - Improve security.", "Moderate", 60, "#ffc107"
+        return "⚠️ Decent Password 😐 - Could be more secure.", "Moderate", 60, "#ffc107"
     else:
         return "\n".join(feedback), "Weak 😞", 30, "#dc3545"
 
 # Strong Password Generator
 def generate_strong_password():
     characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*"
-    return ''.join(random.choice(characters) for _ in range(12))
+    return ''.join(random.choice(characters) for _ in range(14))
 
 # Streamlit UI
 st.set_page_config(page_title="🔐 Password Strength Checker", page_icon="🔒", layout="centered")
@@ -69,4 +69,4 @@ if st.button("🛠 Generate Strong Password"):
 
 # Footer
 st.markdown("---")
-st.markdown("<p style='text-align: center; color: #00FFD1;'>Made with ❤️ using Streamlit</p>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; color: #00FFD1;'>Built with ❤️ using Streamlit</p>", unsafe_allow_html=True)
